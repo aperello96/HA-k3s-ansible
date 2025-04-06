@@ -1,4 +1,4 @@
 .env/
 *.log
-ansible.cfg
+# ansible.cfg
 kubeconfig
