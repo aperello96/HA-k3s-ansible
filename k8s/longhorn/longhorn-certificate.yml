@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: longhorn-web-ui-certificate
+  namespace: longhorn-system
+spec:
+  # Secret names are always required.
+  secretName: longhorn-web-ui-tls
+  issuerRef:
+    name: cloudflare-clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - longhorn.local.perelohome.com
