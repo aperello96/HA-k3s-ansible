@@ -1,0 +1,35 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: monitoring-grafana-cert
+  namespace: monitoring
+spec:
+  secretName: monitoring-grafana-tls-secret
+  issuerRef:
+    name: cloudflare-clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - grafana.pro.local.perelohome.com
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: monitoring-grafana-ingress
+  namespace: monitoring
+spec:
+  rules:
+  - host: "grafana.pro.local.perelohome.com"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - grafana.pro.local.perelohome.com
+    secretName: monitoring-grafana-tls-secret
