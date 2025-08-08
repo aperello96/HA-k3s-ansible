@@ -3,9 +3,9 @@
   hosts: k3s_cluster
   gather_facts: true
   roles:
-    - role: reset
+    - role: ../k3s-role/reset
       become: true
-    - role: raspberrypi
+    - role: ../k3s-role/raspberrypi
       become: true
       vars: { state: absent }
   post_tasks:
@@ -21,5 +21,5 @@
   become: true
   remote_user: "{{ proxmox_lxc_ssh_user }}"
   roles:
-    - role: reset_proxmox_lxc
+    - role: ../k3s-role/reset_proxmox_lxc
       when: proxmox_lxc_configure
