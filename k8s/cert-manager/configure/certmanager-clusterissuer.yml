@@ -4,7 +4,7 @@ metadata:
   name: cloudflare-clusterissuer
 spec:
   acme:
-    email: email.com
+    email: albert.perello.covas@gmail.com
     server: https://acme-v02.api.letsencrypt.org/directory #staging server: https://acme-staging-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: cloudflare-clusterissuer-account-key

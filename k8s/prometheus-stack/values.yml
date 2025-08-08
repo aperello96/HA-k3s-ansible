@@ -168,6 +168,15 @@ prometheus:
   enabled: true
   prometheusSpec:
     replicas: 1
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteMany
+          resources:
+            requests:
+              storage: 50Gi
+          storageClassName: longhorn
     replicaExternalLabelName: "replica"
     ruleSelectorNilUsesHelmValues: false
     serviceMonitorSelectorNilUsesHelmValues: false
